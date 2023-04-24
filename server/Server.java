@@ -3,11 +3,13 @@ package server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
 public class Server {
     public static void main(String[] args) {
         ServerSocket serverSocket; //protocolo TCP/IP ele que se preocupa em como entragar a mensagem
+        Socket socketClient = null;
         int porta = 54321;
-        Socket socketClient;
+        boolean continuar = true;       
 
         //processo de bind solicita porta
         try {
@@ -18,16 +20,20 @@ public class Server {
             return;
         }
 
-        //while(){
+        while(continuar){
             try {
                 System.out.println("Aguardando o cliente...");
                 //programa para e aguarda a mensagem
                 socketClient = serverSocket.accept();
                 System.out.println("Conectado com " + socketClient.getInetAddress().getHostAddress());
+
+                ThreadCalc calc = new ThreadCalc(socketClient);
+                calc.start();
+
             } catch (Exception e) {
-                // TODO: handle exception
+                
             }
-        //}
+        }
 
         try {
             System.out.println("Encerrando o servidor");
