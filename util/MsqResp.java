@@ -1,6 +1,8 @@
 package util;
 
-public class MsqResp {
+import java.io.Serializable;
+
+public class MsqResp implements Serializable {
     private Status status;
     private double value;
 

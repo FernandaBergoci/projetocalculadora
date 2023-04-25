@@ -37,6 +37,7 @@ public class Server {
 
         try {
             System.out.println("Encerrando o servidor");
+            socketClient.close();
             serverSocket.close();
         } catch (Exception e) {
             

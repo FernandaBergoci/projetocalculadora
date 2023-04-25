@@ -24,6 +24,7 @@ public class ThreadCalc extends Thread{
             
             //atrelei a entrada do socket
             in = new ObjectInputStream(client.getInputStream());
+            out = new ObjectOutputStream(client.getOutputStream());
 
             MsqReq request = (MsqReq) in.readObject();
             System.out.println("Recebido: " + request.getValue1() + " " + request.getOper() + " " + request.getValue2());
